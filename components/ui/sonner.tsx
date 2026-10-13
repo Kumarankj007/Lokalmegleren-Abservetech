@@ -1,0 +1,64 @@
+// "use client"
+
+// import { useTheme } from "next-themes"
+// import { Toaster as Sonner } from "sonner"
+
+// type ToasterProps = React.ComponentProps<typeof Sonner>
+
+// const Toaster = ({ ...props }: ToasterProps) => {
+//   const { theme = "system" } = useTheme()
+
+//   return (
+//     <Sonner
+//       theme={theme as ToasterProps["theme"]}
+//       className="toaster group"
+//       toastOptions={{
+//         classNames: {
+//           toast:
+//             "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
+//           description: "group-[.toast]:text-muted-foreground",
+//           actionButton:
+//             "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+//           cancelButton:
+//             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+//         },
+//       }}
+//       {...props}
+//     />
+//   )
+// }
+
+// export { Toaster }
+
+"use client"
+
+import { useTheme } from "next-themes"
+import { Toaster as Sonner } from "sonner"
+
+type ToasterProps = React.ComponentProps<typeof Sonner>
+
+export function Toaster({ ...props }: ToasterProps) {
+  const { theme = "system" } = useTheme()
+
+  return (
+    <Sonner
+      theme={theme as ToasterProps["theme"]}
+      position="top-right"
+      className="toaster group"
+      toastOptions={{
+        classNames: {
+          toast:
+            "group toast rounded-xl border bg-background text-foreground shadow-lg",
+          description: "text-sm text-muted-foreground",
+          actionButton:
+            "rounded-lg bg-primary text-primary-foreground hover:bg-primary/90",
+          cancelButton:
+            "rounded-lg bg-muted text-muted-foreground hover:bg-muted/80",
+          success: "border-success text-success",
+          error: "border-destructive text-destructive",
+        },
+      }}
+      {...props}
+    />
+  )
+}

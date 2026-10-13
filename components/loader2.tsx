@@ -1,0 +1,25 @@
+"use client";
+import React from "react";
+import { Loader2 } from "lucide-react";
+import ShortLogo from "./partials/auth/shortLogo";
+import { cn } from "@/lib/utils";
+
+const Loader = ({ message = "Laster...", className }: { message?: string, className?: string }) => {
+  return (
+    <div className={cn(" h-screen flex items-center justify-center flex-col space-y-2", className)}>
+      <div className="flex gap-2 items-center ">
+        {/* <DashCodeLogo className="text-default-900 h-8 w-8 [&>path:nth-child(3)]:text-background [&>path:nth-child(2)]:text-background" /> */}
+        <ShortLogo />
+        <h1 className="text-xl font-semibold bg-theme text-transparent bg-clip-text ">
+          Lokalmegleren
+        </h1>
+      </div>
+      <span className=" inline-flex gap-1  items-center">
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        {message}
+      </span>
+    </div>
+  );
+};
+
+export default Loader;
