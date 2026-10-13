@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+*:not(font) {
+  transition: all 0.2s ease-in-out;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  /* background: var(--background);
+  color: var(--foreground); */
+  font-family: 'Alata', Arial, Helvetica, sans-serif;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* Hides scrollbar on Chrome, Safari */
+}
+
+.custom-scrollbar {
+  scrollbar-width: none; /* Hides scrollbar on Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar on Edge */
+}
+.accordionitem div{
+font-size: 18px;
+}
+
+.gold_btn {
+  background-color: #d6bc77;
+  border: 2px solid #d6bc77;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.gold_btn:hover{
+  background-color: transparent;
+  color: #d6bc77;
+}
+
+.blue_btn {
+  background-color: #18344e;
+  border: 2px solid #18344e;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.blue_btn:hover{
+  background-color: transparent;
+  color: #18344e;
+}
+
+@font-face {
+  font-family: 'Alata';
+  src: url('/assets/alata/Alata/Alata-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body {
+  font-family: Helvetica, sans-serif;
+}
+
+.ogFont {
+  font-family: 'Alata', Arial, Helvetica, sans-serif;
+}
+

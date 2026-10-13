@@ -1,0 +1,120 @@
+/*
+ * Core layout styles required by the `page-flip` library (HTML mode).
+ * The package ships these in src/Style/stPageFlip.css but does NOT bundle
+ * them, and nothing in the app imports that file — so the flip container
+ * collapses to 0 height and pages render at 0x0. These rules restore it.
+ *
+ * NOTE: the `.stf__block` is absolutely positioned and sizes against the
+ * nearest positioned ancestor. That MUST be `.stf__parent` (which the
+ * library gives an inline min-width/min-height), so the wrapper is left
+ * unpositioned on purpose — giving `.stf__wrapper` `position: relative`
+ * would make the block resolve its height against a 0-height box.
+ */
+
+.stf__parent {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+
+.stf__parent canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.stf__block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  perspective: 2000px;
+}
+
+.stf__item {
+  display: none;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.stf__outerShadow,
+.stf__innerShadow,
+.stf__hardShadow,
+.stf__hardInnerShadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/*
+ * SMOOTHNESS FIX — the app-wide `*:not(font) { transition: all 0.2s
+ * ease-in-out }` in globals.css is the reason the flip looks laggy/janky.
+ * page-flip animates each page by rewriting its transform / clip-path /
+ * size / position on EVERY requestAnimationFrame tick; that global rule
+ * makes the browser additionally tween every one of those changes over
+ * 200ms, so the pages float ~200ms behind and never track crisply.
+ *
+ * Cancel every transition inside the flip book so page-flip's own 60fps
+ * rAF animation runs untouched. Scoped to `.flip-book` so buttons/other UI
+ * keep their hover transitions; `!important` beats the un-flagged global.
+ */
+.flip-book,
+.flip-book * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/*
+ * Zoom slider in the bottom toolbar. Native range inputs cannot be styled
+ * with utility classes (the track/thumb live in the shadow DOM), so the
+ * viewer's flat white-on-dark look is defined here.
+ */
+.flipbook-zoom {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  background: transparent;
+  outline: none;
+}
+
+.flipbook-zoom::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.flipbook-zoom::-moz-range-track {
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.flipbook-zoom::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  margin-top: -5px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.flipbook-zoom::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.flipbook-zoom:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
