@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding-block: 0;
+      font-family: Helvetica, sans-serif;
+    }
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #e2cf9e !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .page {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        overflow: hidden !important;
+        position: relative !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .page:last-of-type {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+    }
+
+    h3 {
+      font-size: 18px !important;
+      font-weight: bold !important;
+      color: #18344e;
+      margin-top: 20px !important;
+    }
+
+    .pdf24_ sup {
+      vertical-align: baseline;
+      position: relative;
+      top: -0.4em;
+    }
+
+    .pdf24_ sub {
+      vertical-align: baseline;
+      position: relative;
+      top: 0.4em;
+    }
+
+    .pdf24_ a:link {
+      text-decoration: none;
+    }
+
+    .pdf24_ a:visited {
+      text-decoration: none;
+    }
+
+    .pdf24_grlink {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1000000;
+    }
+
+    .pdf24_01 {
+      position: absolute;
+      white-space: nowrap;
+    }
+
+    .pdf24_02 {
+      font-size: 1em;
+      background-color: #e2cf9e;
+      width: 794px;
+      height: 1123px;
+      overflow: hidden;
+      position: relative;
+      border-style: none;
+      display: block;
+    }
+
+    .page-num-bar {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .page-num-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: gray;
+      transform: translateY(-50%);
+    }
+
+    .page-num {
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 14px);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid gray;
+      text-align: center;
+
+      padding-block: 4px;
+      font-size: 13px;
+      font-family: Helvetica, sans-serif;
+      color: gray;
+      background: #e2cf9e;
+      z-index: 1;
+    }
+
+    img.page-num-line {
+      position: absolute;
+      top: 13px;
+      left: 0;
+      width: 794px;
+      height: 1px;
+      background: gray;
+      display: block;
+      pointer-events: none;
+      z-index: 0;
+      object-fit: fill;
+    }
+
+    .blueBg img.page-num-line {
+      background: gray;
+    }
+
+    .blueBg {
+      page-break-before: auto !important;
+      break-before: auto !important;
+      background-color: #18344e;
+    }
+
+    .whiteBg {
+      background-color: #ffffff;
+    }
+
+    .pdf24_03 {
+      position: relative;
+      height: 1123px;
+    }
+
+    .pdf24_04 {
+      position: absolute;
+      pointer-events: none;
+      width: 794px;
+      height: 1123px;
+      object-fit: cover;
+    }
+
+    .pdf24_05 {
+      position: absolute;
+      pointer-events: none;
+      width: 794px;
+      height: 1123px;
+      object-fit: contain;
+    }
+
+    .pdf24_07 {
+      font-size: 0.833333em;
+      color: #e2cf9e;
+    }
+
+    .pdf24_08 {
+      line-height: 1.394em;
+    }
+
+    .pdf24_09 {
+      letter-spacing: 1.1233px;
+    }
+
+    .pdf24_10 {
+      font-size: 2.5em;
+      color: #e2cf9e;
+    }
+
+    .pdf24_11 {
+      line-height: 1.42em;
+    }
+
+    .pdf24_12 {
+      letter-spacing: -0.3673px;
+    }
+
+    .pdf24_13 {
+      font-size: 3.333333em;
+      color: #000;
+    }
+
+    .pdf24_14 {
+      letter-spacing: -0.5813px;
+    }
+
+    .pdf24_15 {
+      letter-spacing: -0.4133px;
+    }
+
+    .pdf24_16 {
+      font-size: 14px;
+      color: #000;
+    }
+
+    .pdf24_17 {
+      letter-spacing: 0.2373px;
+    }
+
+    .pdf24_18 {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .pdf24_19 {
+      letter-spacing: -0.0127px;
+    }
+
+    .pdf24_20 {
+      font-size: 17px;
+      color: #06456d;
+    }
+
+    .pdf24_21 {
+      letter-spacing: -0.1045px;
+    }
+
+    .pdf24_22 {
+      letter-spacing: -0.064px;
+    }
+
+    .pdf24_23 {
+      letter-spacing: -0.1031px;
+    }
+
+    .pdf24_24 {
+      letter-spacing: 0.0264px;
+    }
+
+    .pdf24_25 {
+      letter-spacing: -0.3307px;
+    }
+
+    .pdf24_26 {
+      letter-spacing: -0.04px;
+    }
+
+    .pdf24_27 {
+      letter-spacing: -0.1467px;
+    }
+
+    .pdf24_28 {
+      letter-spacing: -0.0547px;
+    }
+
+    .pdf24_29 {
+      letter-spacing: -0.218px;
+    }
+
+    .pdf24_31 {
+      letter-spacing: -0.0514px;
+    }
+
+    .pdf24_32 {
+      letter-spacing: 0px;
+    }
+
+    .pdf24_33 {
+      letter-spacing: -0.0293px;
+    }
+
+    .pdf24_34 {
+      letter-spacing: -0.0537px;
+    }
+
+    .pdf24_36 {
+      letter-spacing: 0.052px;
+    }
+
+    .pdf24_37 {
+      letter-spacing: -0.3868px;
+    }
+
+    .pdf24_38 {
+      letter-spacing: -0.0444px;
+    }
+
+    .pdf24_39 {
+      letter-spacing: -0.1936px;
+    }
+
+    .pdf24_40 {
+      letter-spacing: -0.144px;
+    }
+
+    .pdf24_41 {
+      letter-spacing: 0.1809px;
+    }
+
+    .pdf24_45 {
+      letter-spacing: -0.259px;
+    }
+
+    .pdf24_46 {
+      letter-spacing: -0.012px;
+    }
+
+    .img_decs {
+      font-size: 18px;
+      color: #000000;
+      display: block;
+      background-color: #E2CF9E;
+      padding: 18px;
+      text-align: center;
+      line-height: 1.2;
+      position: absolute;
+      margin: 0;
+      z-index: 10;
+      bottom: 150px;
+      left: 20%;
+      max-width: 80%;
+      border-radius: 20px;
+    }
+
+    body>div {
+      color: #000;
+    }
+
+    .megler-section {
+      padding: 40px;
+      padding-block: 135px;
+    }
+
+    .megler-box {
+      padding: 40px;
+    }
+
+    .megler-top {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .megler-image {
+      width: 260px;
+      flex-shrink: 0;
+    }
+
+    .megler-image img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .megler-content {
+      margin-left: 60px;
+    }
+
+    .megler-name {
+      font-size: 34px;
+      color: #2b2b2b;
+      margin-bottom: 12px;
+    }
+
+    .megler-role {
+      font-size: 20px;
+      color: #4a3b2b;
+      margin-bottom: 25px;
+    }
+
+    .megler-contact {
+      font-size: 18px;
+      color: #2b2b2b;
+      margin-bottom: 6px;
+    }
+
+    .megler-desc {
+      margin-top: 15px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #333;
+      white-space: pre-line;
+    }
+
+    .cols-2 {
+      column-count: 2;
+      column-gap: 32px;
+      column-width: 340px;
+      column-fill: auto;
+      -webkit-column-fill: auto;
+      -webkit-column-count: 2;
+      -webkit-column-gap: 32px;
+      overflow: hidden;
+
+      font-size: 16px;
+      line-height: 1.4;
+      font-family: Helvetica, Arial, "Liberation Sans", "Nimbus Sans", sans-serif;
+
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .cols-2>* {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+
+      margin-block: 2px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .cols-2 h1,
+    .cols-2 h2,
+    .cols-2 h3,
+    .cols-2 h4 {
+      break-after: avoid;
+      page-break-after: avoid;
+      -webkit-column-break-after: avoid;
+    }
+
+    .cols-2 .accordionitem>h1.megler-name {
+      margin-top: 0;
+    }
+
+    .cols-2 .accordionitem+.accordionitem>h1.megler-name {
+      margin-top: 24px;
+    }
+
+    .cols-2 .accordionitem>h3:first-child {
+      margin-top: 0 !important;
+    }
+
+    .om-pill {
+      position: absolute;
+      top: 24px;
+      z-index: 20;
+      display: inline-block;
+      padding: 7px 18px;
+      border: 1px solid #18344e;
+      background: transparent;
+      color: #18344e;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .om-pill-left {
+      left: 0;
+      border-left: 0;
+      border-radius: 0 999px 999px 0;
+    }
+
+    .om-pill-right {
+      right: 0;
+      border-right: 0;
+      border-radius: 999px 0 0 999px;
+    }
+
+    .has-om-pill {
+      padding-top: 80px !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <%
+
+  function fixWin1252(str) {
+  if (!str) return str;
+  return String(str)
+    .replace(/\x80/g, '€').replace(/\x82/g, '‚').replace(/\x83/g, 'ƒ')
+    .replace(/\x84/g, '„').replace(/\x85/g, '…').replace(/\x86/g, '†')
+    .replace(/\x87/g, '‡').replace(/\x88/g, 'ˆ').replace(/\x89/g, '‰')
+    .replace(/\x8A/g, 'Š').replace(/\x8B/g, '‹').replace(/\x8C/g, 'Œ')
+    .replace(/\x8E/g, 'Ž').replace(/\x91/g, '\u2018').replace(/\x92/g, '\u2019')
+    .replace(/\x93/g, '\u201C').replace(/\x94/g, '\u201D').replace(/\x95/g, '•')
+    .replace(/\x96/g, '–').replace(/\x97/g, '—').replace(/\x98/g, '˜')
+    .replace(/\x99/g, '™').replace(/\x9A/g, 'š').replace(/\x9B/g, '›')
+    .replace(/\x9C/g, 'œ').replace(/\x9E/g, 'ž').replace(/\x9F/g, 'Ÿ');
+}
+
+// Apply to all string fields in propertyDetail
+function fixDetailStrings(obj) {
+  if (!obj || typeof obj !== 'object') return obj;
+  Object.keys(obj).forEach(function(k) {
+    if (typeof obj[k] === 'string') obj[k] = fixWin1252(obj[k]);
+    else if (obj[k] && typeof obj[k] === 'object') fixDetailStrings(obj[k]);
+  });
+  return obj;
+}
+fixDetailStrings(propertyDetail);
+
+// Also fix brief HTML content
+if (propertyBriefDetail) {
+  propertyBriefDetail.forEach(function(item) {
+    if (!item) return;
+    if (item.overskrift) item.overskrift = fixWin1252(item.overskrift);
+    if (item.subGroup) item.subGroup.forEach(function(sub) {
+      if (!sub) return;
+      if (sub.overskrift) sub.overskrift = fixWin1252(sub.overskrift);
+      if (sub.html) sub.html = fixWin1252(sub.html);
+      if (sub.htmlMedFlettekoder) sub.htmlMedFlettekoder = fixWin1252(sub.htmlMedFlettekoder);
+    });
+  });
+}
+
+const LINE_RATIO    = 1.4;
+const BLOCK_MARGIN  = 2;
+const BODY_FS       = 16;
+const LINE_H        = BODY_FS * LINE_RATIO;
+const H1_FS = 34, H1_LH = H1_FS * LINE_RATIO;
+const H2_FS = 24, H2_LH = H2_FS * LINE_RATIO;
+const H3_FS = 18, H3_LH = H3_FS * LINE_RATIO;
+const H3_MT = 20;
+const COL_GAP       = 32;
+const LI_INDENT     = 24;
+
+const PAGE_W = 794;
+const PAGE_H = 1123;
+
+const regularImages = [];
+const floorplanImages = [];
+
+propertyImages.forEach(function(image) {
+
+  if (image.beskrivelse && image.beskrivelse.toLowerCase().includes('plantegning')) {
+    floorplanImages.push(image);
+  } else {
+    regularImages.push(image);
+  }
+});
+
+const sortedImages = [...regularImages, ...floorplanImages];
+const hasFloorplans = floorplanImages.length > 0;
+
+const OM_TEXT_TOP_PADDING = 140;
+const OM_BOTTOM_PADDING = 48;
+const OM_HEADING_HEIGHT = 102;
+
+const OM_CONTENT_HEIGHT = PAGE_H - OM_TEXT_TOP_PADDING - OM_BOTTOM_PADDING;
+const OM_FIRST_HEIGHT = OM_CONTENT_HEIGHT - OM_HEADING_HEIGHT;
+
+const COLS_H    = Math.floor(Math.floor((PAGE_H - 90 - 40) / LINE_H) * LINE_H);
+const COLS_H_P0 = COLS_H - 8 * Math.round(LINE_H);
+
+const ACC_BOX_W = PAGE_W - 80;
+const ACC_COL_W = Math.floor((ACC_BOX_W - COL_GAP) / 2);
+const OM_COL_W  = PAGE_W - Math.round(PAGE_W * 0.40) - 72;
+
+function isEmptyHTML(s) {
+  if (!s) return true;
+
+  const stripped = s
+    .replace(/&nbsp;|&#160;|&#xA0;/gi, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, '')
+    .trim();
+  return stripped === '' ||
+    s === '<div></div>' ||
+    s === '<div><br /></div>' ||
+    s === '<div><br />\r\n</div>' ||
+    s.toLowerCase() === 'no data';
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+const GLYPH_W = (function() {
+  const w = {};
+  const put = function(chars, width) { for (const ch of chars) w[ch] = width; };
+  put(" ", 278); put(" ", 278);
+  put("!", 278); put("\"", 355); put("#", 556); put("$", 556); put("%", 889);
+  put("&", 667); put("'", 191); put("(", 333); put(")", 333); put("*", 389);
+  put("+", 584); put(",", 278); put("-", 333); put(".", 278); put("/", 278);
+  put("0123456789", 556);
+  put(":", 278); put(";", 278); put("<", 584); put("=", 584); put(">", 584);
+  put("?", 556); put("@", 1015);
+  put("A", 667); put("B", 667); put("C", 722); put("D", 722); put("E", 667);
+  put("F", 611); put("G", 778); put("H", 722); put("I", 278); put("J", 500);
+  put("K", 667); put("L", 556); put("M", 833); put("N", 722); put("O", 778);
+  put("P", 667); put("Q", 778); put("R", 722); put("S", 667); put("T", 611);
+  put("U", 722); put("V", 667); put("W", 944); put("X", 667); put("Y", 667);
+  put("Z", 611);
+  put("[", 278); put("\\", 278); put("]", 278); put("^", 469); put("_", 556);
+  put("`", 333);
+  put("a", 556); put("b", 556); put("c", 500); put("d", 556); put("e", 556);
+  put("f", 278); put("g", 556); put("h", 556); put("i", 222); put("j", 222);
+  put("k", 500); put("l", 222); put("m", 833); put("n", 556); put("o", 556);
+  put("p", 556); put("q", 556); put("r", 333); put("s", 500); put("t", 278);
+  put("u", 556); put("v", 500); put("w", 722); put("x", 500); put("y", 500);
+  put("z", 500);
+  put("{", 334); put("|", 260); put("}", 334); put("~", 584);
+  put("æ", 889); put("Æ", 1000); put("ø", 611); put("Ø", 778);
+  put("åäàáâã", 556); put("ÅÄÀÁÂÃ", 667);
+  put("éèêë", 556); put("ÉÈÊË", 667);
+  put("íìîï", 278); put("ÍÌÎÏ", 278);
+  put("óòôõö", 556); put("ÓÒÔÕÖ", 778);
+  put("úùûü", 556); put("ÚÙÛÜ", 722);
+  put("ç", 500); put("Ç", 722); put("ñ", 556); put("Ñ", 722); put("ß", 611);
+  put("°", 400); put("«»", 556); put("–", 556); put("—", 1000);
+  put("‘’‚", 222); put("“”„", 333); put("…", 1000); put("•", 350);
+  put("²³¹", 333); put("½¼¾", 834); put("©®", 737); put("§", 556);
+  return w;
+})();
+
+const GLYPH_W_BOLD = (function() {
+  const w = {};
+  const put = function(chars, width) { for (const ch of chars) w[ch] = width; };
+  put(" ", 278); put(" ", 278);
+  put("!", 333); put("\"", 474); put("#", 556); put("$", 556); put("%", 889);
+  put("&", 722); put("'", 238); put("(", 333); put(")", 333); put("*", 389);
+  put("+", 584); put(",", 278); put("-", 333); put(".", 278); put("/", 278);
+  put("0123456789", 556);
+  put(":", 333); put(";", 333); put("<", 584); put("=", 584); put(">", 584);
+  put("?", 611); put("@", 975);
+  put("A", 722); put("B", 722); put("C", 722); put("D", 722); put("E", 667);
+  put("F", 611); put("G", 778); put("H", 722); put("I", 278); put("J", 556);
+  put("K", 722); put("L", 611); put("M", 833); put("N", 722); put("O", 778);
+  put("P", 667); put("Q", 778); put("R", 722); put("S", 667); put("T", 611);
+  put("U", 722); put("V", 667); put("W", 944); put("X", 667); put("Y", 667);
+  put("Z", 611);
+  put("[", 333); put("\\", 278); put("]", 333); put("^", 584); put("_", 556);
+  put("`", 333);
+  put("a", 556); put("b", 611); put("c", 556); put("d", 611); put("e", 556);
+  put("f", 333); put("g", 611); put("h", 611); put("i", 278); put("j", 278);
+  put("k", 556); put("l", 278); put("m", 889); put("n", 611); put("o", 611);
+  put("p", 611); put("q", 611); put("r", 389); put("s", 556); put("t", 333);
+  put("u", 611); put("v", 556); put("w", 778); put("x", 556); put("y", 556);
+  put("z", 500);
+  put("{", 389); put("|", 280); put("}", 389); put("~", 584);
+  put("æ", 889); put("Æ", 1000); put("ø", 611); put("Ø", 778);
+  put("åäàáâã", 556); put("ÅÄÀÁÂÃ", 722);
+  put("éèêë", 556); put("ÉÈÊË", 667);
+  put("íìîï", 278); put("ÍÌÎÏ", 278);
+  put("óòôõö", 611); put("ÓÒÔÕÖ", 778);
+  put("úùûü", 611); put("ÚÙÛÜ", 722);
+  put("ç", 556); put("Ç", 722); put("ñ", 611); put("Ñ", 722); put("ß", 611);
+  put("°", 400); put("«»", 556); put("–", 556); put("—", 1000);
+  put("‘’‚", 278); put("“”„", 500); put("…", 1000); put("•", 350);
+  put("²³¹", 333); put("½¼¾", 834); put("©®", 737); put("§", 556);
+  return w;
+})();
+const DEFAULT_GLYPH_W = 556;
+
+function glyphW(ch, bold) {
+  const w = (bold ? GLYPH_W_BOLD : GLYPH_W)[ch];
+  return w === undefined ? DEFAULT_GLYPH_W : w;
+}
+function textW(s, fs, bold) {
+  let t = 0;
+  for (const ch of s) t += glyphW(ch, bold);
+  return (t * fs) / 1000;
+}
+
+function decodeEnt(s) {
+  return String(s)
+    .replace(/&#(\d+);/g, function(_, d) {
+      const n = Number(d);
+      return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : " ";
+    })
+    .replace(/&#x([0-9a-f]+);/gi, function(_, h) {
+      const n = parseInt(h, 16);
+      return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : " ";
+    })
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"').replace(/&apos;/gi, "'")
+    .replace(/&aring;/gi, "å").replace(/&oslash;/gi, "ø").replace(/&aelig;/gi, "æ")
+    .replace(/&Aring;/g, "Å").replace(/&Oslash;/g, "Ø").replace(/&AElig;/g, "Æ")
+    .replace(/&laquo;/gi, "«").replace(/&raquo;/gi, "»")
+    .replace(/&ndash;/gi, "–").replace(/&mdash;/gi, "—")
+    .replace(/&deg;/gi, "°").replace(/&sup2;/gi, "²").replace(/&sup3;/gi, "³")
+    .replace(/&hellip;/gi, "…").replace(/&bull;/gi, "•");
+}
+
+function wrapWords(words, colW, fs, maxLines, bold) {
+  if (!words.length) return { lines: 0, cut: 0 };
+  const spaceW = textW(" ", fs, bold);
+  let lines = 1, x = 0, cut = 0;
+  for (let i = 0; i < words.length; i++) {
+    const ww = textW(decodeEnt(words[i]), fs, bold);
+    if (ww > colW) {
+      if (x > 0) { lines++; x = 0; }
+      const parts = Math.ceil(ww / colW);
+      lines += parts - 1;
+      x = ww - (parts - 1) * colW;
+    } else {
+      const add = x === 0 ? ww : spaceW + ww;
+      if (x + add > colW) { lines++; x = ww; } else { x += add; }
+    }
+    if (lines > maxLines) return { lines: lines, cut: cut };
+    cut = i + 1;
+  }
+  return { lines: lines, cut: cut };
+}
+
+function wrapLines(text, colW, fs, bold) {
+  const words = decodeEnt(text).replace(/\s+/g, " ").trim().split(" ").filter(Boolean);
+  return wrapWords(words, colW, fs, Infinity, bold).lines;
+}
+
+function countBodyLines(html, colW) {
+  const BR = "\u0001", BLOCK = "\u0002";
+  const marked = String(html)
+    .replace(/<br\s*\/?>/gi, BR)
+    .replace(/<\/(p|div|li|tr|ul|ol|table|h[1-6])\s*>/gi, BLOCK)
+    .replace(/<[^>]+>/g, "");
+  const bold = /<(b|strong)\b/i.test(html);
+  let lines = 0, buf = "";
+  const flush = function(fromBr) {
+    const t = decodeEnt(buf).replace(/\s+/g, " ").trim();
+    if (t) lines += wrapLines(t, colW, BODY_FS, bold);
+    else if (fromBr) lines += 1;
+    buf = "";
+  };
+  for (const ch of marked) {
+    if (ch === BR) flush(true);
+    else if (ch === BLOCK) flush(false);
+    else buf += ch;
+  }
+  flush(false);
+  return Math.max(1, lines);
+}
+
+function atomBox(html, colW) {
+  colW = colW || ACC_COL_W;
+  if (!html) return { h: 0, mt: 0, mb: 0 };
+  const head = String(html).match(/^\s*<h([1-6])\b/i);
+  if (head) {
+    const lvl = Number(head[1]);
+    const fs = lvl === 1 ? H1_FS : lvl === 2 ? H2_FS : H3_FS;
+    const lh = lvl === 1 ? H1_LH : lvl === 2 ? H2_LH : H3_LH;
+    const text = String(html).replace(/<[^>]+>/g, " ");
+    const lines = Math.max(1, wrapLines(text, colW, fs, true));
+    return {
+      h: lines * lh,
+
+      mt: lvl >= 3 ? H3_MT : BLOCK_MARGIN,
+      mb: BLOCK_MARGIN,
+    };
+  }
+  const isList = /<li\b/i.test(html);
+  return {
+    h: countBodyLines(html, isList ? colW - LI_INDENT : colW) * LINE_H,
+    mt: BLOCK_MARGIN,
+    mb: BLOCK_MARGIN,
+  };
+}
+
+function estimateHeight(html, colW) {
+  const b = atomBox(html, colW);
+  return b.h + b.mt;
+}
+
+function unwrapDiv(html) {
+  if (!html) return "";
+  const s = html.trim();
+  const m = s.match(/^<div[^>]*>([\s\S]*)<\/div>$/i);
+  if (!m) return s;
+  const inner  = m[1];
+  const opens  = (inner.match(/<div\b/gi)  || []).length;
+  const closes = (inner.match(/<\/div>/gi) || []).length;
+  return opens === closes ? inner.trim() : s;
+}
+
+function findBalancedDivEnd(s, start) {
+  const openMatch = s.slice(start).match(/^<div\b[^>]*>/i);
+  if (!openMatch) return -1;
+
+  let pos = start + openMatch[0].length;
+  let depth = 1;
+
+  while (depth > 0 && pos < s.length) {
+
+    const tail = s.slice(pos);
+    const closeIdx = tail.search(/<\/div>/i);
+    const openIdx  = tail.search(/<div\b/i);
+
+    if (closeIdx === -1) return -1;
+    if (openIdx !== -1 && openIdx < closeIdx) {
+
+      const nestedOpen = tail.slice(openIdx).match(/^<div\b[^>]*>/i);
+      if (!nestedOpen) { pos += openIdx + 4; continue; }
+      depth++;
+      pos += openIdx + nestedOpen[0].length;
+    } else {
+
+      depth--;
+      pos += closeIdx + 6;
+    }
+  }
+  return depth === 0 ? pos : -1;
+}
+
+function htmlToAtoms(html) {
+  if (!html) return [];
+  const src = unwrapDiv(html);
+  const out = [];
+  let buf = "";
+  const flush = function() {
+    const t = buf.trim();
+    if (t) out.push(t);
+    buf = "";
+  };
+
+  let i = 0;
+  while (i < src.length) {
+    const tail = src.slice(i);
+
+    const list = tail.match(/^<(ul|ol)([^>]*)>([\s\S]*?)<\/\1>/i);
+    if (list) {
+      flush();
+      const tag = list[1], attrs = list[2], inner = list[3];
+      const liRe = /<li([^>]*)>([\s\S]*?)<\/li>/gi;
+      let m, any = false;
+      while ((m = liRe.exec(inner)) !== null) {
+        out.push("<" + tag + attrs + "><li" + m[1] + ">" + m[2] + "</li></" + tag + ">");
+        any = true;
+      }
+      if (!any) out.push(list[0]);
+      i += list[0].length;
+      continue;
+    }
+
+    const table = tail.match(/^<table([^>]*)>([\s\S]*?)<\/table>/i);
+    if (table) {
+      flush();
+      const attrs = table[1], inner = table[2];
+      const trRe = /<tr([^>]*)>([\s\S]*?)<\/tr>/gi;
+      let m, any = false;
+      while ((m = trRe.exec(inner)) !== null) {
+        out.push("<table" + attrs + "><tbody><tr" + m[1] + ">" + m[2] + "</tr></tbody></table>");
+        any = true;
+      }
+      if (!any) out.push(table[0]);
+      i += table[0].length;
+      continue;
+    }
+
+    if (/^<div\b/i.test(tail)) {
+      const openMatch = tail.match(/^<div\b[^>]*>/i);
+      const end = findBalancedDivEnd(src, i);
+      if (openMatch && end > i) {
+        flush();
+        const innerStart = i + openMatch[0].length;
+        const innerEnd = end - 6;
+        const inner = src.slice(innerStart, innerEnd);
+
+        htmlToAtoms(inner).forEach(function(a) { out.push(a); });
+        i = end;
+        continue;
+      }
+
+      if (openMatch) {
+        i += openMatch[0].length;
+        continue;
+      }
+    }
+
+    const block = tail.match(/^<(p|h[1-6])([^>]*)>([\s\S]*?)<\/\1>/i);
+    if (block) {
+      flush();
+      out.push(block[0]);
+      i += block[0].length;
+      continue;
+    }
+
+    const br = tail.match(/^<br\s*\/?>/i);
+    if (br) {
+      flush();
+      i += br[0].length;
+      continue;
+    }
+
+    const strayClose = tail.match(/^<\/div>/i);
+    if (strayClose) {
+      i += strayClose[0].length;
+      continue;
+    }
+
+    buf += src[i];
+    i++;
+  }
+  flush();
+
+  return out.map(function(a) {
+    if (/^<(p|h[1-6]|ul|ol|li|table|tr|div|span)\b/i.test(a)) return a;
+    return "<p>" + a + "</p>";
+  });
+}
+
+const MIN_SPLIT_LINES = 1;
+
+const isHeadingAtom = function(a) { return /^\s*<h[1-6]\b/i.test(a.html); };
+
+function splitAtomToFit(atom, roomPx, colW) {
+  const maxLines = Math.floor(roomPx / LINE_H);
+  if (maxLines < MIN_SPLIT_LINES) return null;
+  const m = String(atom.html).match(/^\s*<(p|div)\b([^>]*)>([\s\S]*)<\/\1>\s*$/i);
+  if (!m) return null;
+  const tag = m[1], attrs = m[2], inner = m[3];
+  if (/<[a-z!\/]/i.test(inner)) return null;
+  const words = inner.replace(/\s+/g, " ").trim().split(" ").filter(Boolean);
+  if (words.length < 2) return null;
+  const fit = wrapWords(words, colW, BODY_FS, maxLines);
+  if (fit.lines <= maxLines) return null;
+  const cut = fit.cut;
+  if (cut < 1 || cut > words.length - 1) return null;
+  const mk = function(text) {
+    const html = "<" + tag + attrs + ">" + text + "</" + tag + ">";
+    const box = atomBox(html, colW);
+    return { html: html, h: box.h + box.mt, box: box };
+  };
+  const head = mk(words.slice(0, cut).join(" "));
+  const tail = mk(words.slice(cut).join(" "));
+  if (head.box.h > roomPx) return null;
+  if (!tail.box.h || tail.box.h < MIN_SPLIT_LINES * LINE_H) return null;
+  return { head: head, tail: tail };
+}
+
+function fillColumn(queue, capH, colW) {
+  const col = [];
+  let used = 0, prevMb = 0;
+  while (queue.length) {
+    const a = queue[0];
+    const box = a.box || atomBox(a.html, colW);
+
+    const gap = col.length === 0 ? box.mt : Math.max(prevMb, box.mt);
+    if (used + gap + box.h <= capH) {
+      col.push(queue.shift());
+      used += gap + box.h;
+      prevMb = box.mb;
+      continue;
+    }
+    const split = splitAtomToFit(a, capH - used - gap, colW);
+    if (split) {
+      queue.shift();
+      col.push(split.head);
+      queue.unshift(split.tail);
+    }
+    break;
+  }
+
+  while (col.length > 1 && isHeadingAtom(col[col.length - 1])) {
+    queue.unshift(col.pop());
+  }
+  if (col.length === 0 && queue.length) col.push(queue.shift());
+  return col;
+}
+
+function packColumns(atoms, colH, colW, colCount, colHFirst) {
+  const n = colCount || 1;
+  const queue = atoms.slice();
+  const pages = [];
+  let guard = 0;
+  while (queue.length && guard++ < 100000) {
+    const cap = pages.length === 0 && colHFirst ? colHFirst : colH;
+    let page = [];
+    for (let c = 0; c < n && queue.length; c++) {
+      page = page.concat(fillColumn(queue, cap, colW));
+    }
+    if (!page.length) break;
+    pages.push(page);
+  }
+  return pages;
+}
+
+function paginateAtoms(atoms, opts) {
+  if (atoms.length === 0) return [];
+  const o = opts || {};
+  return packColumns(atoms, o.colH || COLS_H, o.colW || ACC_COL_W, o.colCount || 2, o.colHFirst);
+}
+
+function paginate(html, opts) {
+  if (!html || isEmptyHTML(html)) return [];
+  const colW = (opts && opts.colW) || ACC_COL_W;
+  const atoms = htmlToAtoms(html).map(function(a) {
+    return { html: a, h: estimateHeight(a, colW), box: atomBox(a, colW) };
+  });
+  return paginateAtoms(atoms, opts);
+}
+
+function paginateOmSingle(html, capFirst, capRest) {
+  if (!html || isEmptyHTML(html)) return [];
+  const atoms = htmlToAtoms(html).map(function(a) {
+    return { html: a, h: estimateHeight(a, OM_COL_W), box: atomBox(a, OM_COL_W) };
+  });
+
+  return packColumns(atoms, capRest, OM_COL_W, 1, capFirst);
+}
+
+function paginateAccordion(briefDetail) {
+  if (!briefDetail || !briefDetail.length) return [];
+  const atoms = [];
+
+  const accBlank = function(s) {
+    return !s ||
+      s === '<div></div>' ||
+      s === '<div><br /></div>' ||
+      s === '<div><br />\r\n</div>' ||
+      s.toLowerCase() === 'no data';
+  };
+
+  briefDetail.filter((item) => !item?.group?.overskrift?.startsWith("Finn.no")).forEach(function(entry) {
+    if (!entry || !entry.subGroup) return;
+
+    const renderable = [];
+    entry.subGroup.forEach(function(sub) {
+      const html    = sub && sub.html              ? sub.html.trim()              : "";
+      const flette  = sub && sub.htmlMedFlettekoder ? sub.htmlMedFlettekoder.trim() : "";
+      const tittel  = sub && sub.overskrift         ? sub.overskrift.trim()         : "";
+      if (flette && !accBlank(flette) && !accBlank(html)) {
+        renderable.push({ overskrift: tittel, html: html });
+      }
+    });
+    if (renderable.length === 0) return;
+
+    const groupTitle = entry.group ? entry.group.overskrift : "";
+    if (groupTitle) {
+      const h1 = '<h1 class="megler-name">' + escapeHTML(groupTitle) + '</h1>';
+      atoms.push({ html: h1, h: estimateHeight(h1, ACC_COL_W), box: atomBox(h1, ACC_COL_W) });
+    }
+
+    renderable.forEach(function(sub) {
+      if (sub.overskrift) {
+        const h3 = '<h3>' + escapeHTML(sub.overskrift) + '</h3>';
+        atoms.push({ html: h3, h: estimateHeight(h3, ACC_COL_W), box: atomBox(h3, ACC_COL_W) });
+      }
+      htmlToAtoms(sub.html).forEach(function(atomHtml) {
+        atoms.push({
+          html: atomHtml,
+          h: estimateHeight(atomHtml, ACC_COL_W),
+          box: atomBox(atomHtml, ACC_COL_W),
+        });
+      });
+    });
+  });
+
+  return paginateAtoms(atoms);
+}
+
+const beskrivelseHtml = (function() {
+  const sub = propertyBriefDetail && propertyBriefDetail[0] && propertyBriefDetail[0].subGroup;
+  if (!sub) return "";
+  const item = sub.find(function(it) { return it.overskrift === "Beskrivelse"; });
+  return item && item.html ? item.html : "";
+})();
+
+const omHasImg = propertyImages && propertyImages.length > 0;
+const omEiendommenPages = omHasImg
+  ? paginateOmSingle(beskrivelseHtml, OM_FIRST_HEIGHT, OM_CONTENT_HEIGHT)
+
+  : paginate(beskrivelseHtml, { colHFirst: COLS_H_P0 });
+const accordionPages    = paginateAccordion(propertyBriefDetail);
+
+const showMegler2 = propertyDetail.megler2 && (
+  !propertyDetail.megler1 ||
+  propertyDetail.megler2.email !== propertyDetail.megler1.email
+);
+
+const documentPageCount = propertyDocuments
+  ? propertyDocuments.reduce(function(sum, doc) {
+      return sum + (doc.images ? doc.images.length : 0);
+    }, 0)
+  : 0;
+
+const totalPages =
+    3
+  + (sortedImages.length > 0 ? sortedImages.length * 2 : 0)
+  + 1
+  + (omEiendommenPages.length > 0 ? 1 + omEiendommenPages.length : 0)
+  + 1
+  + (showMegler2 ? 0 : 0)
+  + accordionPages.length  + 1
+  + (documentPageCount > 0 ? 1 + documentPageCount : 0)
+  + (hasFloorplans ? 1 : 0)
+  + 1
+  + 1;
+
+const needsPadPage = totalPages % 2 === 1;
+
+let _pn = 0;
+function incPn() { _pn++; }
+function pn() {
+  _pn++;
+  return '<div class="page-num-bar">'
+    + '<img class="page-num-line" data-locked="true" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\'/%3E" alt="" />'
+    + '<div class="page-num" data-field="page-num">' + _pn + '</div>'
+    + '</div>';
+}
+
+function omPill(pageNo) {
+
+  const side = _pn % 2 === 0 ? "om-pill-left" : "om-pill-right";
+  return '<div class="om-pill ' + side + '">OM EIENDOMMEN</div>';
+}
+
+const pagesBeforeOm = 3 + (sortedImages.length > 0 ? sortedImages.length * 2 : 0) + 1;
+
+const omFirstContentPageNo = pagesBeforeOm + 3;
+
+const omSectionPages =
+  omEiendommenPages.length > 0 ? 1 + omEiendommenPages.length : 0;
+
+const accordionFirstPageNo =
+  pagesBeforeOm + omSectionPages + 1 + (showMegler2 ? 0 : 0) + 1;
+%>
+
+  <div id="page_0" class="pdf24_ pdf24_02 blueBg flex flex-col items-center">
+    <%- pn() %>
+    <div class="w-full text-center px-2 break-all" style="padding-top: 100mm;">
+      <span class="pdf24_07 pdf24_08 pdf24_09" data-field="eiendom.kommune"><%= propertyDetail.eiendom?.kommune %></span>
+    </div>
+    <div class="w-full text-center px-2 break-all">
+      <span class="pdf24_10 pdf24_11 pdf24_12" style="word-spacing:0.0184em;" data-field="eiendom.adresse">
+        <%= propertyDetail.eiendom?.adresse %>
+      </span>
+    </div>
+  </div>
+
+  <div id="page_1" class="pdf24_ pdf24_02 blueBg"><%- pn() %>
+    <img src="https://admin.lokalmegleren.no/logo.png" alt="lokalmegleren_logo" class="block absolute object-contain w-50 h-50" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  </div>
+
+  <div id="page_2" class="pdf24_ pdf24_02">
+    <%- pn() %>
+    <div class="pdf24_01 w-full text-center px-2 break-all" style="top:13.9386em;">
+      <span class="pdf24_13 pdf24_11 pdf24_14" style="word-spacing:-0.0012em;">Velkommen til </span>
+    </div>
+    <div class="pdf24_01 w-full text-center px-2 break-all" style="top:17.2719em;z-index:33;">
+      <span class="pdf24_13 pdf24_11 pdf24_15" style="word-spacing:0.0155em;">din nye bolig </span>
+    </div>
+  </div>
+
+  <% if (propertyImages.length > 0) { %>
+  <%
+    var image = propertyImages[0];
+    var enc = encodeURIComponent(image.url);
+    var spreadW = PAGE_W * 2;
+    var spreadBase = "https://images.weserv.nl/?url=" + enc +
+                     "&w=" + spreadW + "&h=" + PAGE_H + "&fit=cover";
+    var leftHalf = spreadBase + "&cx=0&cy=0&cw=" + PAGE_W + "&ch=" + PAGE_H;
+    var rightHalf = spreadBase + "&cx=" + PAGE_W + "&cy=0&cw=" + PAGE_W + "&ch=" + PAGE_H;
+  %>
+
+  <div id="page_img0a" class="pdf24_ pdf24_02 break-after-page break-before-page">
+    <%- incPn(); %>
+    <div class="pdf24_03">
+      <img src="<%= leftHalf %>" alt="<%= image.beskrivelse || '' %>" class="pdf24_04" />
+      <% if (image.beskrivelse && image.beskrivelse.trim() !== '') { %>
+      <p class="img_decs"><%= image.beskrivelse %></p>
+      <% } %>
+    </div>
+  </div>
+
+  <div id="page_img0b" class="pdf24_ pdf24_02 break-after-page break-before-page">
+    <%- incPn(); %>
+    <div class="pdf24_03">
+      <img src="<%= rightHalf %>" alt="<%= image.beskrivelse || '' %>" class="pdf24_04" />
+    </div>
+  </div>
+  <% } %>
+
+  <div id="page_48" class="pdf24_ pdf24_02" data-field="nokkel">
+    <%- pn() %>
+    <section class="p-6">
+      <p><span class="pdf24_16 pdf24_17">NØKKELOPPLYSNINGER </span></p>
+      <p class="text-center pt-20 break-all">
+        <span class="pdf24_13 pdf24_17">Nøkkelopplysninger</span>
+      </p>
+
+      <div class="flex flex-wrap gap-x-[2%] gap-y-10 mt-10">
+
+        <% if (propertyDetail.prisantydning) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_19">Prisantydning</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_21" style="word-spacing:0.0143em;" data-field="prisantydning">
+              kr <%= propertyDetail?.prisantydning?.toLocaleString("no-NO").replace(/,/g, " ") %><%= propertyDetail?.prisantydningTil && propertyDetail?.prisantydningTil > 0
+                ? " - " + propertyDetail?.prisantydningTil?.toLocaleString("no-NO").replace(/,/g, " ")
+                : "" %>,-
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.okonomi?.fellesutgifter?.utgifter) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_22">Felleskostnader </span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_24" data-field="okonomi.fellesutgifter">
+              kr <%= propertyDetail?.okonomi.fellesutgifter.utgifter?.toLocaleString("no-NO").replace(/,/g, " ") %><%= propertyDetail?.okonomi.fellesutgifter.utgifterTil && propertyDetail?.okonomi.fellesutgifter.utgifterTil > 0
+                ? " - " + propertyDetail?.okonomi.fellesutgifter.utgifterTil?.toLocaleString("no-NO").replace(/,/g, " ")
+                : "" %>,- /Mnd
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.okonomi?.andelFellesgjeld?.saldo) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_23">Andel gjeld</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_25" style="word-spacing:0.0451em;" data-field="okonomi.andelFellesgjeld">
+              kr <%= propertyDetail?.okonomi.andelFellesgjeld.saldo?.toLocaleString("no-NO").replace(/,/g, " ") %><%= propertyDetail?.okonomi.andelFellesgjeld.saldoTil && propertyDetail?.okonomi.andelFellesgjeld.saldoTil > 0
+                ? " - " + propertyDetail?.okonomi.andelFellesgjeld.saldoTil?.toLocaleString("no-NO").replace(/,/g, " ")
+                : "" %>,-
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.okonomi?.andelFellesformue) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_26" style="word-spacing:0.01em;">Andel formune</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_27" style="word-spacing:0.02em;" data-field="okonomi.andelFellesformue">
+              kr <%= propertyDetail?.okonomi?.andelFellesformue.toLocaleString("no-NO") %>,-
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.takst?.ligningsverdi2) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_23">Formuesverdi (sekundaerbolig)</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_25" style="word-spacing:0.0451em;" data-field="takst.ligningsverdi2">
+              kr <%= propertyDetail.takst?.ligningsverdi2.toLocaleString("no-NO") %>,-
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.markedsføring?.finnInnstillinger?.eiendomstype) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_31" style="word-spacing:0.0129em;">Eiendomstype</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_32" data-field="eiendomstype">
+              <%= propertyDetail.markedsføring?.finnInnstillinger?.eiendomstype %>
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.eiendom?.romfordeling?.antallSoverom) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_29">Soverom</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_33" style="word-spacing:0.004em;" data-field="eiendom.romfordeling.antallSoverom">
+              <%= propertyDetail.eiendom?.romfordeling?.antallSoverom %><%= propertyDetail.eiendom?.romfordeling?.antallSoveromTil && propertyDetail.eiendom?.romfordeling?.antallSoveromTil > 0
+                ? " - " + propertyDetail.eiendom?.romfordeling?.antallSoveromTil
+                : "" %>
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.etasje > 0 || propertyDetail?.eiendom?.bolignummer !== "") { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_34">Leilighet</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_37" style="word-spacing:0.0527em;" data-field="eiendom.etasje">
+              <% if (propertyDetail?.eiendom?.etasje > 0) { %><%= propertyDetail.eiendom.etasje %> . etasje<% } %><% if (propertyDetail?.eiendom?.etasje > 0 && propertyDetail?.eiendom?.bolignummer !== "") { %> /<% } %><% if (propertyDetail?.eiendom?.bolignummer && propertyDetail?.eiendom?.bolignummer !== "") { %> Bruksenhetsnr. <br><%= propertyDetail.eiendom.bolignummer %><% } %>
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.byggeår) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_36">Byggeår</span></div>
+          <div><span class="pdf24_20 pdf24_08 pdf24_32" data-field="eiendom.byggeår"><%= propertyDetail?.eiendom?.byggeår %></span></div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.arealer?.bruksareal) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_38">Bruksareal</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_39" style="word-spacing:0.0264em;" data-field="eiendom.arealer.bruksareal">
+              <%= propertyDetail?.eiendom?.arealer?.bruksareal.toLocaleString("no-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %><%= propertyDetail?.eiendom?.arealer?.bruksarealTil && propertyDetail?.eiendom?.arealer?.bruksarealTil > 0
+                ? " - " + propertyDetail?.eiendom?.arealer?.bruksarealTil
+                : "" %> m²
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.okonomi?.kommunaleAvgifter?.avgifter) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_31" style="word-spacing:0.0129em;">Kommunale avgifter</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_32" data-field="avgifter">
+              <%= propertyDetail.okonomi?.kommunaleAvgifter?.avgifter %>
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.okonomi?.kommunaleAvgifter?.periode) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_31" style="word-spacing:0.0129em;">Periode</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_32" data-field="okonomi.kommunaleAvgifter.periode">
+              <%= propertyDetail.okonomi?.kommunaleAvgifter?.periode %>
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.arealer?.interntbruksareal) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_40">BRA-i</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_41" data-field="eiendom.arealer.interntbruksareal">
+              <%= propertyDetail?.eiendom?.arealer?.interntbruksareal?.toLocaleString("no-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %> m²
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eierformBygning?.navn) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_45" style="word-spacing:0.0648em;">Eierform</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_34" style="word-spacing:0.0135em;" data-field="eierformBygning.navn">
+              <%= propertyDetail?.eierformBygning?.navn %>
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.arealer?.eksterntbruksareal) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_46">BRA-e</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_32" data-field="eiendom.arealer.eksterntbruksareal">
+              <%= propertyDetail?.eiendom?.arealer?.eksterntbruksareal.toLocaleString("no-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %> m²
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.okonomi?.salgssum) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_46">Salgssum</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_32" data-field="okonomi.salgssum">
+              kr <%= propertyDetail?.okonomi?.salgssum.toLocaleString("no-NO") %>,-
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.takst?.ligningsverdi) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_28">Formuesverdi</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_24" data-field="takst.ligningsverdi">
+              kr <%= propertyDetail.takst?.ligningsverdi.toLocaleString("no-NO") %>,-
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.arealer?.tomteareal) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_23">Tomt</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_25" style="word-spacing:0.0451em;" data-field="eiendom.arealer.tomteareal">
+              <%= propertyDetail?.eiendom?.arealer?.tomteareal.toLocaleString("no-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %> m²
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.arealer?.primærrom) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_23">Primærrom</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_25" style="word-spacing:0.0451em;" data-field="eiendom.arealer.primærrom">
+              <%= propertyDetail?.eiendom?.arealer?.primærrom.toLocaleString("no-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %><%= propertyDetail?.eiendom?.arealer?.primærromTil && propertyDetail?.eiendom?.arealer?.primærromTil > 0
+                ? " - " + propertyDetail?.eiendom?.arealer?.primærromTil
+                : "" %> m²
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail?.eiendom?.arealer?.aapentareal) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_23">TBA</span></div>
+          <div>
+            <span class="pdf24_20 pdf24_08 pdf24_25" style="word-spacing:0.0451em;" data-field="eiendom.arealer.aapentareal">
+              <%= propertyDetail?.eiendom?.arealer?.aapentareal.toLocaleString("no-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %> m²
+            </span>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (propertyDetail.eiendom.energimerking) { %>
+        <div class="w-[32%] px-2">
+          <div><span class="pdf24_18 pdf24_08 pdf24_22">Energimerke</span></div>
+          <div>
+            <svg width="40" height="40" viewBox="0 0 32 32" style="display:inline">
+              <polygon points="16,4 29,12 24,28 8,28 3,12" fill="<%=
+                propertyDetail.eiendom.energimerking.includes('Rød')      ? '#C32632'
+                : propertyDetail.eiendom.energimerking.includes('Oransje')  ? '#F47821'
+                : propertyDetail.eiendom.energimerking.includes('Grønn')    ? '#279248'
+                : propertyDetail.eiendom.energimerking.includes('IkkeSatt') ? '#4CAF50'
+                : '#CAA950'
+              %>" />
+              <text x="16" y="18" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold" dominant-baseline="middle">
+                <%= propertyDetail.eiendom.energimerking.slice(-1) %>
+              </text>
+            </svg>
+          </div>
+        </div>
+        <% } %>
+
+      </div>
+    </section>
+  </div>
+
+  <div id="page_91" class="pdf24_ pdf24_02" data-field="megler">
+    <%- pn() %>
+    <div class="megler-section">
+      <h1 class="megler-name" style="font-size: 53.3333px;">Din megler</h1>
+      <% if (propertyDetail.megler1) { %>
+      <div class="megler-box">
+        <div class="megler-top">
+          <div class="megler-image">
+            <img src="<%= propertyDetail.megler1.profilbilde %>" data-field="megler1.profilbilde" />
+          </div>
+          <div class="megler-content">
+            <div class="megler-name" data-field="megler1.navn"><%= propertyDetail.megler1.navn %></div>
+            <div class="megler-role" data-field="megler.role">Eiendomsmegler</div>
+            <div class="megler-contact" data-field="megler1.email"><%= propertyDetail.megler1.email %></div>
+            <div class="megler-contact" data-field="megler1.mobiltelefon"><%= propertyDetail.megler1.mobiltelefon %></div>
+          </div>
+        </div>
+        <% if (showMegler2) { %>
+        <div class="megler-top mt-14">
+          <div class="megler-image">
+            <img src="<%= propertyDetail.megler2.profilbilde %>" data-field="megler2.profilbilde" />
+          </div>
+          <div class="megler-content">
+            <div class="megler-name" data-field="megler2.navn"><%= propertyDetail.megler2.navn %></div>
+            <div class="megler-role" data-field="megler.role">Eiendomsmegler</div>
+            <div class="megler-contact" data-field="megler2.email"><%= propertyDetail.megler2.email %></div>
+            <div class="megler-contact" data-field="megler2.mobiltelefon"><%= propertyDetail.megler2.mobiltelefon %></div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <%
+
+  var spreadW    = PAGE_W * 2;
+
+  var p90ImgW = Math.round(PAGE_W * 0.40);
+  var p90TxtW = PAGE_W - p90ImgW;
+
+  var omUrlsFor = function(idx) {
+    if (!omHasImg) return { p49: "", p90: "", alt: "" };
+
+    var image = sortedImages[(idx + 1) % sortedImages.length];
+    var base = "https://images.weserv.nl/?url=" + encodeURIComponent(image.url)
+      + "&w=" + spreadW + "&h=" + PAGE_H + "&fit=cover";
+    return {
+      p49: base + "&cx=0&cy=0&cw=" + PAGE_W + "&ch=" + PAGE_H,
+      p90: base + "&cx=" + PAGE_W + "&cy=0&cw=" + p90ImgW + "&ch=" + PAGE_H,
+      alt: (image.beskrivelse || "")
+    };
+  };
+%>
+
+  <% if (omEiendommenPages.length > 0) { %>
+
+  <% if (!omHasImg) { %>
+
+  <div id="page_49" class="pdf24_ pdf24_02 blueBg flex flex-col items-center" data-field="om-cover">
+    <%- pn() %>
+    <div class="w-full text-center px-2 break-all" style="padding-top:100mm;">
+      <span class="pdf24_07 pdf24_08 pdf24_09" data-field="eiendom.adresse">
+        <%= propertyDetail.eiendom?.adresse %>
+      </span>
+    </div>
+    <div class="w-full text-center px-2 break-all">
+      <span class="pdf24_10 pdf24_11 pdf24_12" style="word-spacing:0.0184em;">
+        OM EIENDOMMEN
+      </span>
+    </div>
+  </div>
+
+  <div id="page_49<%= pageIdx === 0 ? '' : '_' + pageIdx %>" class="pdf24_ pdf24_02 p-10 has-om-pill" data-field="om-page">
+    <%- pn() %>
+    <%- omPill(omFirstContentPageNo + pageIdx) %>
+    <% if (pageIdx === 0) { %>
+    <span class="pdf24_11 pdf24_12 text-[40px] block mb-5">Om Eiendommen</span>
+    <span class="pdf24_11 pdf24_12 block mb-5 leading-[1.2]" style="font-size:35px; word-spacing:0.0184em;">
+      <%= propertyDetail?.overskrift %>
+    </span>
+    <% } %>
+    <div class="cols-2" style="height:<%= pageIdx === 0 ? COLS_H_P0 : COLS_H %>px;">
+      <% pageAtoms.forEach(function(atom) { %><%- atom.html %><% }) %>
+    </div>
+  </div>
+
+  <% } else { %>
+  <% omEiendommenPages.forEach(function(pageAtoms, pageIdx) { %>
+  <% var omU = omUrlsFor(pageIdx); %>
+
+  <div id="page_49<%= pageIdx === 0 ? '' : '_' + pageIdx %>" class="pdf24_ pdf24_02" data-field="om-cover" style="padding:0; overflow:hidden; position:relative;">
+    <%- incPn() %>
+
+    <% if (omU.alt) { %>
+    <p class="img_decs"><%= omU.alt %></p>
+    <% } %>
+    <div class="pdf24_03">
+      <img src="<%= omU.p49 %>" alt="<%= omU.alt %>" class="pdf24_04" />
+    </div>
+  </div>
+
+  <div id="page_90<%= pageIdx === 0 ? '' : '_' + pageIdx %>" class="pdf24_ pdf24_02" data-field="om-page" style="padding:0; overflow:hidden; position:relative; background:#e2cf9e;">
+    <%- pn() %>
+
+    <%- omPill(_pn) %>
+
+    <div style="position:absolute; top:0; left:0; width:<%= p90ImgW %>px; height:<%= PAGE_H %>px; overflow:hidden;">
+      <img src="<%= omU.p90 %>" alt="" style="position:absolute; top:0; left:0; width:<%= p90ImgW %>px; height:<%= PAGE_H %>px; object-fit:cover; display:block; pointer-events:none;" />
+    </div>
+
+    <div style="position:absolute; top:0; left:<%= p90ImgW %>px; width:<%= p90TxtW %>px; height:<%= PAGE_H %>px; background:#e2cf9e; box-sizing:border-box; overflow:hidden; display:flex; flex-direction:column; padding:<%= OM_TEXT_TOP_PADDING %>px 36px 48px 36px;">
+      <% if (pageIdx === 0) { %>
+      <div style="flex-shrink:0; margin-bottom:12px;">
+        <span class="pdf24_11 pdf24_12 text-[40px] block" style="line-height:1.2;">Om Eiendommen</span>
+        <span class="pdf24_11 pdf24_12 block leading-[1.2]" style="font-size:28px; word-spacing:0.0184em;">
+          <%= propertyDetail?.overskrift %>
+        </span>
+      </div>
+      <% } %>
+
+      <div style="flex:1; overflow:hidden; min-height:0; column-count:1; -webkit-column-count:1;" class="cols-2" data-field="om-beskrivelse" data-richtext="true">
+        <% pageAtoms.forEach(function(atom) { %><%- atom.html %><% }) %>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+
+  <% } %>
+
+  <% } %>
+
+  <%
+
+  var omImagesConsumed = omHasImg ? omEiendommenPages.length : 0;
+
+  var renderedFloorplanTitle = false;
+%>
+  <% sortedImages.forEach(function(image, index) {
+
+  if (index === 0 || (index <= omImagesConsumed)) return;
+
+  var isFloorplan = image.beskrivelse && image.beskrivelse.toLowerCase().includes('plantegning');
+
+  if (isFloorplan && !renderedFloorplanTitle) {
+    renderedFloorplanTitle = true;
+%>
+
+  <div id="page_floorplan_title" class="pdf24_ pdf24_02 blueBg flex flex-col items-center" data-field="floorplan-cover">
+    <%- pn() %>
+    <div class="w-full text-center px-2 break-all" style="padding-top: 100mm;">
+      <span class="pdf24_07 pdf24_08 pdf24_09" data-field="eiendom.adresse">
+        <%= propertyDetail.eiendom?.adresse %>
+      </span>
+    </div>
+    <div class="w-full text-center px-2 break-all">
+      <span class="pdf24_10 pdf24_11 pdf24_12" style="word-spacing:0.0184em;">
+        PLANTEGNING
+      </span>
+    </div>
+  </div>
+  <%
+  }
+
+  var enc = encodeURIComponent(image.url);
+
+  if (isFloorplan) {
+
+    var fullImage = "https://images.weserv.nl/?url=" + enc +
+                    "&w=" + PAGE_W + "&h=" + PAGE_H + "&fit=cover";
+%>
+
+  <div id="page_floorplan_<%= index %>" class="pdf24_ pdf24_02 break-after-page break-before-page">
+    <%- incPn(); %>
+    <div class="pdf24_03">
+      <img src="<%= fullImage %>" alt="<%= image.beskrivelse || '' %>" class="pdf24_04" />
+      <% if (image.beskrivelse && image.beskrivelse.trim() !== '') { %>
+      <p class="img_decs"><%= image.beskrivelse %></p>
+      <% } %>
+    </div>
+  </div>
+  <%
+  } else {
+
+    var spreadW    = PAGE_W * 2;
+    var spreadBase = "https://images.weserv.nl/?url=" + enc +
+                     "&w=" + spreadW + "&h=" + PAGE_H + "&fit=cover";
+    var leftHalf   = spreadBase + "&cx=0&cy=0&cw=" + PAGE_W + "&ch=" + PAGE_H;
+    var rightHalf  = spreadBase + "&cx=" + PAGE_W + "&cy=0&cw=" + PAGE_W + "&ch=" + PAGE_H;
+%>
+
+  <div id="page_img<%= index %>a" class="pdf24_ pdf24_02 break-after-page break-before-page">
+    <%- incPn(); %>
+    <div class="pdf24_03">
+      <img src="<%= leftHalf %>" alt="<%= image.beskrivelse || '' %>" class="pdf24_04" />
+      <% if (image.beskrivelse && image.beskrivelse.trim() !== '') { %>
+      <p class="img_decs"><%= image.beskrivelse %></p>
+      <% } %>
+    </div>
+  </div>
+
+  <div id="page_img<%= index %>b" class="pdf24_ pdf24_02 break-after-page break-before-page">
+    <%- incPn(); %>
+    <div class="pdf24_03">
+      <img src="<%= rightHalf %>" alt="<%= image.beskrivelse || '' %>" class="pdf24_04" />
+    </div>
+  </div>
+  <%
+  }
+}) %>
+
+  <% if (accordionPages && accordionPages.length > 0) { %>
+  <div id="page_92" class="pdf24_ pdf24_02 blueBg flex flex-col items-center" data-field="accordion-cover" style="page-break-before:always; break-before:page;">
+    <%- pn() %>
+    <div class="w-full text-center px-2 break-all" style="padding-top:100mm;">
+      <span class="pdf24_07 pdf24_08 pdf24_09" data-field="eiendom.adresse">
+        <%= propertyDetail.eiendom?.adresse %>
+      </span>
+    </div>
+    <div class="w-full text-center px-2 break-all">
+      <span class="pdf24_10 pdf24_11 pdf24_12" style="word-spacing:0.0184em;">
+        OM EIENDOMMEN
+      </span>
+    </div>
+  </div>
+  <% } %>
+  <% accordionPages.forEach(function(pageAtoms, pageIdx) { %>
+  <div id="page_93<%= pageIdx === 0 ? '' : '_' + pageIdx %>" class="pdf24_ pdf24_02 p-10 print has-om-pill" data-field="accordion-page" style="page-break-before:always; break-before:page;">
+    <%- pn() %>
+    <%- omPill(accordionFirstPageNo + pageIdx) %>
+    <div data-richtext="true" data-field="accordion" class="cols-2" style="height:<%= COLS_H %>px;">
+      <% pageAtoms.forEach(function(atom) { %><%- atom.html %><% }) %>
+    </div>
+  </div>
+  <% }) %>
+
+  <% if (propertyDocuments && propertyDocuments.length > 0) { %>
+  <div id="page_400" class="pdf24_ pdf24_02 blueBg flex flex-col items-center" data-field="document-cover">
+    <%- pn() %>
+    <div class="w-full text-center px-2 break-all" style="padding-top: 100mm;">
+      <span class="pdf24_07 pdf24_08 pdf24_09" data-field="eiendom.adresse"><%= propertyDetail.eiendom?.adresse %></span>
+    </div>
+    <div class="w-full text-center px-2 break-all">
+      <span class="pdf24_10 pdf24_11 pdf24_12" style="word-spacing:0.0184em;">VEDLEGG</span>
+    </div>
+  </div>
+  <% var docPageCounter = 401; %>
+  <% propertyDocuments.forEach(function(doc) { %>
+  <% doc.images.forEach(function(imgSrc, pageIndex) { %>
+  <div id="page_<%= docPageCounter++ %>" class="pdf24_ pdf24_02 whiteBg break-after-page break-before-page" data-field="document-page">
+    <%- incPn(); %>
+    <div class="pdf24_03">
+      <img data-role="document-photo" src="<%= imgSrc %>" alt="<%= doc.navn %> side <%= pageIndex + 1 %>" class="pdf24_05" />
+    </div>
+  </div>
+  <% }) %>
+  <% }) %>
+  <% } %>
+
+  <div id="page_1001" class="pdf24_ pdf24_02 blueBg">
+    <%- pn() %>
+    <div class="w-full text-center px-2 break-all" style="padding-top: 100mm;">
+      <img src="https://admin.lokalmegleren.no/logo.png" alt="lokalmegleren_logo" class="block object-contain w-20 h-20 mx-auto mb-4">
+      <span class="pdf24_10 pdf24_11 pdf24_12">Lokalkjent der du bor</span>
+    </div>
+  </div>
+
+  <div id="page_1002" class="pdf24_ pdf24_02 blueBg">
+    <%- pn() %>
+    <img src="https://lokalmegleren.no/assets/logo.png" alt="lokalmegleren_logo" class="block absolute bottom-20 object-contain w-full h-32" style="bottom: 5rem;">
+  </div>
+
+</body>
+
+</html>
