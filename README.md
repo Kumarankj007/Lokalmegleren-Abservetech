@@ -1,92 +1,201 @@
-# lokalmegleren
+# Lokalmegleren Admin Dashboard
 
+A specialized real estate administration platform for **Lokalmegleren**, designed to manage properties, customize real estate documents through interactive template editors, and export publication-ready materials as standard PDFs and booklet-view PDFs.
 
+---
 
-## Getting started
+## Core Concepts
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- **Real Estate Document & Publication Workflow:** Centralized management of property content (`Boligstoff`), interactive template-based document editing, and automated generation of standard PDFs as well as paginated two-page spread booklet PDFs.
+- **Server State Synchronization & Query Invalidation:** Asynchronous data retrieval using TanStack React Query (`useReactQuery`, `useApiMutation`) with granular cache invalidation (`queryClient.invalidateQueries`) after successful mutations.
+- **Server-Side Operations:** Server-side transaction handling through Next.js Server Actions with path-based revalidation using `revalidatePath`.
+- **Concurrent UI Transitions:** Smooth, non-blocking modal submissions and asynchronous mutations using React's `useTransition` and `startTransition` hooks.
+- **Contextual Schema Validation:** Form management using React Hook Form and Zod, including contextual validation with `.superRefine()` to verify phone number length against selected country dial codes.
+- **Multilingual Routing:** Internationalized routing using the `/[locale]/...` structure, powered by `next-intl` translation hooks and routing utilities.
+- **Drag-and-Drop Pipeline:** Event-driven column and task reordering using `@dnd-kit` sensors, collision detection, and sortable contexts.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+---
 
-## Add your files
+## Technologies Used
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- **Next.js** — App Router and Server Actions
+- **TypeScript**
+- **Tailwind CSS** — Styling with `next-themes` dark/light mode integration
+- **TanStack React Query** (`@tanstack/react-query`)
+- **TanStack Table** (`@tanstack/react-table`)
+- **React Hook Form** and **Zod** (`@hookform/resolvers/zod`)
+- **Radix UI Primitives** — Dialog, Dropdown Menu, Context Menu, Collapsible, Avatar, Tooltip, and Hover Card
+- **FullCalendar** — React, day grid, time grid, interaction, and list views
+- **@dnd-kit** — Core, sortable, and utilities
+- **next-intl** — Internationalization and localized routing
+- **Embla Carousel** — Autoplay
+- **React Select** (`react-select`)
+- **date-fns**
+- **Lucide React** and **Iconify**
+- **Emoji Mart** (`@emoji-mart/react`, `@emoji-mart/data`)
 
+---
+
+## Key Pages
+
+### Admin (`/admin`)
+
+- **Role & User Management:** Administrator directory with paginated tables and multi-field search across staff profiles.
+- **Staff Management Modals:** Add and edit administrator accounts using Zod validation and dynamic country-code phone formatting.
+
+### Eiendommer (Properties)
+
+- **Listing Hub:** Manage housing data, unit specifications, descriptions, and media assets (`Boligstoff`).
+- **Broker Operations:** Organize active properties and link property data directly to sales documentation.
+
+### Templates
+
+- **Layout Configurations:** Manage standardized formats, including marketing flyers, sales prospectuses, and multi-page brochures.
+- **Branding Rules:** Define dynamic placeholders, text styles, color palettes, and structured sections to keep real estate materials on-brand.
+
+### Rediger (Template & Document Editor)
+
+- **Interactive Customizer:** Adapt predefined templates to individual property listings.
+- **Content Editing:** Edit property text, image placement, section arrangements, and broker details with a dynamic preview.
+
+### PDF Viewer (PDF & Booklet View)
+
+- **Digital & Print Previews:** Inspect documents using continuous scrolling or two-page booklet spreads.
+- **Export & Distribution:** Generate high-resolution PDFs for printing and client delivery.
+
+---
+
+## Installation Guide
+
+### Prerequisites
+
+Install the following before setting up the project:
+
+- **Node.js:** Use a version supported by your project's Next.js version. Check the [Next.js installation guide](https://nextjs.org/docs/app/getting-started/installation) for current requirements.
+- **npm:** Included with Node.js. You can also use your project's existing package manager (Yarn, pnpm, or Bun).
+- **Git:** Required if you are cloning the repository.
+
+Check your installed versions:
+
+```bash
+node -v
+npm -v
+git --version
 ```
-cd existing_repo
-git remote add origin https://git.abserve.tech:8001/node/lokalmegleren.git
-git branch -M main
-git push -uf origin main
+
+### 1. Clone the Repository
+
+Replace `<repository-url>` with the actual Git repository URL:
+
+```bash
+git clone <repository-url>
+cd lokalmegleren-Admin
 ```
 
-## Integrate with your tools
+If you already have the source code on your computer, open a terminal in the project directory instead.
 
-- [ ] [Set up project integrations](https://git.abserve.tech:8001/node/lokalmegleren/-/settings/integrations)
+### 2. Install Dependencies
 
-## Collaborate with your team
+Install the dependencies listed in `package.json`:
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+```bash
+npm install
+```
 
-## Test and Deploy
+If the project uses `package-lock.json`, `npm ci` can be used for a clean, reproducible install:
 
-Use the built-in continuous integration in GitLab.
+```bash
+npm ci
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Use either `npm install` or `npm ci`, not both in succession. If the repository uses a different package manager, follow its lockfile and project instructions.
 
-***
+### 3. Configure Environment Variables
 
-# Editing this README
+Check the project for `.env.example` or setup instructions. If an example file exists, copy it to `.env.local` and fill in the required values:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+```bash
+cp .env.example .env.local
+```
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Add the actual environment variables required by the application, such as API URLs or authentication settings. **Do not commit `.env.local` or secrets to Git.** If the project does not have an `.env.example`, ask the project maintainer which variables are required.
 
-## Name
-Choose a self-explaining name for your project.
+### 4. Start the Development Server
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Run:
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+```bash
+npm run dev
+```
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### 5. Build for Production
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Create an optimized production build:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```bash
+npm run build
+```
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+If the build completes successfully, start the production server:
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```bash
+npm run start
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Open [http://localhost:3000](http://localhost:3000) to check the production build locally.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Available Scripts
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+The scripts below are common in Next.js projects. Confirm the actual commands in your `package.json`:
 
-## License
-For open source projects, say how it is licensed.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the application for production |
+| `npm run start` | Run the production server |
+| `npm run lint` | Run lint checks, if configured |
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+---
+
+## Project Structure
+
+```text
+lokalmegleren-Admin/
+├── action/                      # Next.js Server Actions (auth, app actions)
+├── app/
+│   └── [locale]/                # Localized route segments (e.g. en, no)
+│       ├── (auth)/              # Authentication screens (login, register)
+│       └── (protected)/         # Authenticated admin routes
+│           ├── admin/           # Admin account directory and modals
+│           ├── adminrole/       # Admin roles and permissions
+│           ├── admin-profile/   # Admin profile management
+│           ├── boligstoff/      # Property management
+│           ├── app/              # Communication and task workspace
+│           │   ├── calendar/    # Calendar planner and event modals
+│           │   ├── chat/        # Messaging interface
+│           │   ├── email/       # Webmail client
+│           │   ├── kanban/      # Draggable Kanban boards
+│           │   ├── projects/    # Projects grid and table views
+│           │   └── todo/        # Task tracker
+│           ├── blocks/          # Statistics and widgets
+│           └── components/      # UI component catalog and previews
+├── components/
+│   ├── ui/                      # Reusable UI primitives
+│   └── tablereusable.tsx        # Reusable TanStack data table
+├── hooks/                       # Custom hooks for queries, mutations, and layout
+├── services/                    # API endpoints and network configuration
+├── utils/                       # Validation helpers and phone-number utilities
+├── public/                      # Static assets, icons, and avatars
+├── package.json                 # Dependencies and npm scripts
+└── README.md                    # Project documentation
+```
+
+> This structure reflects the directories supplied in the project overview. Some files or folders may differ in the actual repository.
+
+---
+
+## Project Purpose
+
+The Lokalmegleren Admin Dashboard brings property management, staff administration, template customization, and PDF publication workflows into one platform. It helps real estate teams manage property information, maintain consistent branding, and prepare professional sales materials for digital distribution and print.
